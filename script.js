@@ -20,7 +20,7 @@ btn.onclick = function () {
   let valuePw = password.value;
 
   if (valueFn != "" && valueLn != "" && valuePw != "" && validate() === true) {
-    alert("Hello beatiful Janica❤❤");
+    alert("Hello beautiful Janica❤❤");
     reset();
   }
   if (valueFn === "") {
