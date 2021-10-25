@@ -16,7 +16,7 @@ btn.addEventListener("click", function () {
 
   if (valueFn != "" && valueLn != "" && valuePw != "" && validate() === true) {
     document.forms[0].reset();
-    alert("Form Submit!");
+    alert("Form Successfully Submitted!");
   }
   if (valueFn === "") {
     messageFn.innerHTML = "First Name cannot be empty";
