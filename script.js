@@ -8,23 +8,17 @@ const messageLn = document.querySelector("#message-ln");
 const messagePw = document.querySelector("#message-pw");
 const messageEmail = document.querySelector("#message-email");
 
-const pattern =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-window.onload = reset();
-
-btn.onclick = function () {
-  let valueEmail = email.value;
+window.onload = document.forms[0].reset();
+btn.addEventListener("click", function () {
   let valueFn = firstName.value;
   let valueLn = lastName.value;
   let valuePw = password.value;
 
   if (valueFn != "" && valueLn != "" && valuePw != "" && validate() === true) {
-    alert("Hello beautiful Janica❤❤");
-    reset();
+    document.forms[0].reset();
+    alert("Form Submit!");
   }
   if (valueFn === "") {
-    console.log("It's Working!");
     messageFn.innerHTML = "First Name cannot be empty";
     messageFn.style.color = "hsl(0, 100%, 74%) ";
     messageFn.style.display = "block";
@@ -53,33 +47,24 @@ btn.onclick = function () {
     password.style.border = "none";
   }
 
-  if (valueEmail === "") {
+  if (validate() === !true) {
     messageEmail.innerHTML = "Looks like this is not an email";
     messageEmail.style.color = "hsl(0, 100%, 74%) ";
     messageEmail.style.display = "block";
     email.style.border = "2px solid hsl(0, 100%, 74%)";
+  } else {
+    messageEmail.style.display = "none";
+    email.style.border = "none";
   }
-};
-
-function reset() {
-  firstName.value = null;
-  lastName.value = null;
-  password.value = null;
-  email.value = null;
-  messageFn.style.display = "none";
-  messageLn.style.display = "none";
-  messagePw.style.display = "none";
-  messageEmail.style.display = "none";
-  firstName.style.border = "none";
-  lastName.style.border = "none";
-  password.style.border = "none";
-  email.style.border = "none";
-}
+});
 
 function validate() {
+  const pattern =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let valueEmail = email.value;
-  if (valueEmail.match(pattern)) return true;
-  else {
+  if (valueEmail.match(pattern)) {
+    return true;
+  } else {
     return false;
   }
 }
